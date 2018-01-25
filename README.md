@@ -1,2 +1,4 @@
 # hello-world
-My first repository!
+Hi GitWorld! 
+
+I'm goint to start learning Scala here!
