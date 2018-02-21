@@ -25,7 +25,7 @@ def sumFactorials(a: Int, b: Int) = sum(factorial, a, b)
 
 // Function definition with Anonymous Functions
 // - Note the declaration as a parameter of the "x^3" function: "x => x * x * x"
-def sumElevateThree(a: Int, b: Int) = sum(x => x * x *x, a, b)
+def sumElevateThree(a: Int, b: Int) = sum(x => x * x * 2, a, b)
 
 
 // Testing code
