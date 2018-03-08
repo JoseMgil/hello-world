@@ -26,6 +26,19 @@ else
    Left(x * x)
 }
 
+/* 
+* Use of "map" 
+* TODO: Review the use of "map", "filter" and "flatMap". 
+*/
+def sqrtSome(x: Double): Option[Double] = {
+
+if(x < 0) None
+else {
+  val ret = Some(x * x)
+  ret.map(y => y * y)
+  } 
+}
+
 // Test cases
 println(sqrtOption(2))
 println(sqrtOption(-2))
