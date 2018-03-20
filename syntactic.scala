@@ -1,0 +1,4 @@
+/*
+  JoseMgil
+  Syntactics conveniences
+*/
