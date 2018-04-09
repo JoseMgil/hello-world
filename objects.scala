@@ -12,16 +12,16 @@ class Rational(x: Int, y: Int) {
   def numer = x / gcd(x, y)
   def denom = y / gcd(x, y)
   
-  def add(r: Rational) = 
+  def + (r: Rational) = 
     new Rational(numer * r.denom + r.numer * denom, denom * r.denom)
   
-  def sub(r: Rational) = 
+  def - (r: Rational) = 
     new Rational(numer * r.denom - r.numer * denom, denom * r.denom)
     
-  def mul(r: Rational) = 
+  def * (r: Rational) = 
     new Rational(numer * r.numer, denom * r. denom) 
   
-  def div(r: Rational) = 
+  def / (r: Rational) = 
     new Rational(numer * r.denom, denom * r.numer)
     
   override def toString = numer + "/" + denom
@@ -39,8 +39,8 @@ val x = new Rational(3, 1)
 val y = new Rational(5, 2)
 val z = new Rational(1, 4)
 
-println(x.add(y).mul(z))
-println(x add y)
+println((x + y) * z)
+println(x / y)
 
 println(x.toString)
 println(new Rational(24, 8)) // Example with the GCD private method
