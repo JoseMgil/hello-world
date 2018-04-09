@@ -35,3 +35,13 @@ def variosParam(x: Int, xs: Int*): Double =
 
 println(variosParam(1,2))
 println(variosParam(1,2,3))
+
+/* 
+   Example of Type expresion with name
+*/
+type Result = Either[String, (Int, Int)]
+def divide(dividend: Int, divisor: Int): Result =
+  if (divisor == 0) Left("Division by zero")
+  else Right((dividend / divisor, dividend % divisor))
+  
+println(divide(4,2))
