@@ -32,9 +32,9 @@ class NoEmpty(elem: Int, left: IntSet, right: IntSet) extends IntSet {
     else this
     
   def sub(x: Int): IntSet = 
-    if(x < elem) left.sub(x)
-    else if(x > elem) right.sub(x)
-    else right
+    if(x < elem) new NoEmpty(elem, left.sub(x), right)
+    else if(x > elem) new NoEmpty(elem, left, right.sub(x))
+    else new Empty()
   
   override def toString = "(" + left + "[" + elem + "]" + right + ")"
     
@@ -44,6 +44,6 @@ val a = new Empty()
 val b = new NoEmpty(3, a, a)
 val c = b.incl(1)
 val d = c.incl(8)
-val r = d.sub(3)
+val r = d.sub(1)
 
-println(c)
+println(r)
