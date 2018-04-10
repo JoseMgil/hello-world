@@ -1,4 +1,10 @@
 
+/*
+  Abstract class with implementations
+  No instances of an abstract class can be created with the operator "new"
+  TODO: Extend and test with the clases
+        Make a method to something else
+*/
 
 abstract class IntSet {
   def incl(x: Int): IntSet
