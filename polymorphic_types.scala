@@ -30,12 +30,20 @@ class NonEmpty[A](elem: A, left: Set[A], right: Set[A]) extends Set[A] {
   override def toString = "(" + left.toString() + "[" + elem + "]" + right.toString() + ")"
 }
 
-println("Test")
-
-
+// Test code
 val a = new Empty[Int]()
 val b = new NonEmpty[Int](3, a, a)
 val c = b.incl(1)
 val d = c.incl(8)
 val f = d.incl(3)
 println(f.toString())
+
+// A better example of Type parameters
+def listOfDuplicates[A](x: A, length: Int): List[A] = {
+  if (length < 1)
+    Nil
+  else
+    x :: listOfDuplicates(x, length - 1)
+}
+println(listOfDuplicates[Int](3, 4))  // List(3, 3, 3, 3)
+println(listOfDuplicates("La", 8))
