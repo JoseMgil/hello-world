@@ -1,5 +1,7 @@
 /*
   Polymorphic types example
+  Methods in Scala can be parameterized by type as well as value. The syntax is similar to that of generic classes. 
+  Type parameters are enclosed in square brackets, while value parameters are enclosed in parentheses.
   By Mgil
 */
 abstract class Set[A] {
