@@ -1,0 +1,4 @@
+/*
+  Polymorphic types example
+  By Mgil
+*/
