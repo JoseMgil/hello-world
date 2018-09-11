@@ -35,8 +35,7 @@ class RealizaImputacion(v_nombre: String, v_totalImputar: Int, v_listaImp: List[
   var listaImp = v_listaImp
   var totalImputar = v_totalImputar
   
-  def imputacionCorrecta(): Boolean = {
-    //TODO: Implementar 
+  def imputacionCorrecta(): Boolean = { 
     if(sumaImputaciones(listaImp) == totalImputar) true
     else false
   }
@@ -46,6 +45,18 @@ class RealizaImputacion(v_nombre: String, v_totalImputar: Int, v_listaImp: List[
       case List() => 0 
       case x :: xs => x.horas + sumaImputaciones(xs)
     }
+  }
+  
+  def obtenerImputaciones(): List[String] = {
+    
+    if(imputacionCorrecta()) {
+      //TODO: Implementar
+      List("Imputacion")
+    }
+    else{
+      List("Imputación Incorrecta")
+    } 
+    
   }
   
 }
@@ -60,3 +71,5 @@ println(imp1 + "-> " + imp1.totalDias(8) + " dias y " + imp1.restoHoras(8) + " h
 
 val imputar1 = new RealizaImputacion("Jose", 56, List(imp1, imp2))
 println(imputar1.imputacionCorrecta())
+
+
