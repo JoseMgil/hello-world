@@ -50,13 +50,21 @@ class RealizaImputacion(v_nombre: String, v_totalImputar: Int, v_listaImp: List[
   def obtenerImputaciones(): List[String] = {
     
     if(imputacionCorrecta()) {
-      //TODO: Implementar
-      List("Imputacion")
+      // Revisar si es correcto el "var" aqui
+      var ret = List("Imputaciones " + nombre + ":")
+      for ( e <- listaImp) {
+        ret = ret:+ resumenImputacion(e)
+      }
+      ret      
     }
     else{
       List("Imputación Incorrecta")
     } 
     
+  }
+  
+  def resumenImputacion(imp: Imputacion): String  = {
+    imp.toString() + "-> " + imp1.totalDias(8) + " dias y " + imp1.restoHoras(8) + " horas"
   }
   
 }
@@ -66,10 +74,8 @@ val imp1 = new Imputacion(cod1,h1)
 val imp2 = new Imputacion(cod2,h2)
 
 println("Total días: " + imp1.totalDias(8))
-println("La imputación es redonda: " + imp1.esImputacionRedonda(8))
-println(imp1 + "-> " + imp1.totalDias(8) + " dias y " + imp1.restoHoras(8) + " horas")
+
 
 val imputar1 = new RealizaImputacion("Jose", 56, List(imp1, imp2))
-println(imputar1.imputacionCorrecta())
 
-
+for (item <- imputar1.obtenerImputaciones()) println(item)
