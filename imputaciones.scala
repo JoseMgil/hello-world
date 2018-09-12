@@ -1,20 +1,6 @@
 // Start writing your ScalaFiddle code here
 // IMPUTACIONES JULIO
-val imp1 = new Imputacion("Z/019664-001",19)
-val imp2 = new Imputacion("Z/017604-001",1)
-val imp3 = new Imputacion("Z/017624-001",2)
-val imp4 = new Imputacion("Z/017597-001",6)
-val imp5 = new Imputacion("Z/019071-001",1)
-val imp6 = new Imputacion("Z/020241-001",8)
-val imp7 = new Imputacion("Z/016599-001",49)
-val imp8 = new Imputacion("Z/021708-001",5)
-val imp9 = new Imputacion("Z/019068-001",8)
-val imp10 = new Imputacion("Z/021915-001",5)
-val imp11 = new Imputacion("Z/018543-002",11)
-val imp12 = new Imputacion("Z/018338-001",4)
-val imp13 = new Imputacion("Z/019029-002",7)
-val imp14 = new Imputacion("Z/019504-002",14)
-val imp15 = new Imputacion("Z/019520-002",14)
+
 
 class Imputacion(v_codigo: String, v_horas: Int) {
   var codigo = v_codigo
