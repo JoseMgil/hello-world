@@ -1,9 +1,20 @@
 // Start writing your ScalaFiddle code here
-val cod1 = "Z/0912"
-val cod2 = "Z/1094"
-val cod3 = "Z/1029"
-val h1 = 10
-val h2 = 46
+// IMPUTACIONES JULIO
+val imp1 = new Imputacion("Z/019664-001",19)
+val imp2 = new Imputacion("Z/017604-001",1)
+val imp3 = new Imputacion("Z/017624-001",2)
+val imp4 = new Imputacion("Z/017597-001",6)
+val imp5 = new Imputacion("Z/019071-001",1)
+val imp6 = new Imputacion("Z/020241-001",8)
+val imp7 = new Imputacion("Z/016599-001",49)
+val imp8 = new Imputacion("Z/021708-001",5)
+val imp9 = new Imputacion("Z/019068-001",8)
+val imp10 = new Imputacion("Z/021915-001",5)
+val imp11 = new Imputacion("Z/018543-002",11)
+val imp12 = new Imputacion("Z/018338-001",4)
+val imp13 = new Imputacion("Z/019029-002",7)
+val imp14 = new Imputacion("Z/019504-002",14)
+val imp15 = new Imputacion("Z/019520-002",14)
 
 class Imputacion(v_codigo: String, v_horas: Int) {
   var codigo = v_codigo
@@ -64,18 +75,13 @@ class RealizaImputacion(v_nombre: String, v_totalImputar: Int, v_listaImp: List[
   }
   
   def resumenImputacion(imp: Imputacion): String  = {
-    imp.toString() + "-> " + imp.totalDias(8) + " dias y " + imp.restoHoras(8) + " horas"
+    imp.toString() + "-> " + imp.totalDias(7) + " dias y " + imp.restoHoras(7) + " horas"
   }
   
+  
 }
+val listaImp = List(imp1, imp2, imp3, imp4, imp5, imp6, imp7, imp8, imp9, imp10, imp11, imp12, imp13, imp14, imp15)
 
-
-val imp1 = new Imputacion(cod1,h1)
-val imp2 = new Imputacion(cod2,h2)
-
-println("Total días: " + imp1.totalDias(8))
-
-
-val imputar1 = new RealizaImputacion("Jose", 56, List(imp1, imp2))
+val imputar1 = new RealizaImputacion("Jose", 154, listaImp)
 
 for (item <- imputar1.obtenerImputaciones()) println(item)
