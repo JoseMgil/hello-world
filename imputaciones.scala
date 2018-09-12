@@ -64,7 +64,7 @@ class RealizaImputacion(v_nombre: String, v_totalImputar: Int, v_listaImp: List[
   }
   
   def resumenImputacion(imp: Imputacion): String  = {
-    imp.toString() + "-> " + imp1.totalDias(8) + " dias y " + imp1.restoHoras(8) + " horas"
+    imp.toString() + "-> " + imp.totalDias(8) + " dias y " + imp.restoHoras(8) + " horas"
   }
   
 }
