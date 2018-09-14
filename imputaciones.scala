@@ -2,6 +2,10 @@
 // IMPUTACIONES JULIO
 
 
+case class Resultado(dias: Int, horas: Int){
+  override def toString(): String = dias + " dias y " + horas + " horas"
+}
+
 class Imputacion(v_codigo: String, v_horas: Int) {
   var codigo = v_codigo
   var horas = v_horas
@@ -26,11 +30,12 @@ class Imputacion(v_codigo: String, v_horas: Int) {
 }
 
 
-class RealizaImputacion(v_nombre: String, v_totalImputar: Int, v_listaImp: List[Imputacion]) {
+class RealizaImputacion(v_nombre: String, v_totalImputar: Int, v_listaImp: List[Imputacion], v_jornada: Int) {
   
   var nombre = v_nombre
   var listaImp = v_listaImp
   var totalImputar = v_totalImputar
+  var jornada = v_jornada
   
   def imputacionCorrecta(): Boolean = { 
     if(sumaImputaciones(listaImp) == totalImputar) true
@@ -61,13 +66,20 @@ class RealizaImputacion(v_nombre: String, v_totalImputar: Int, v_listaImp: List[
   }
   
   def resumenImputacion(imp: Imputacion): String  = {
-    imp.toString() + "-> " + imp.totalDias(7) + " dias y " + imp.restoHoras(7) + " horas"
+    imp.toString() + "-> " + resultadoImputacion(imp).toString()
   }
   
+  def resultadoImputacion(imp: Imputacion): Resultado = {
+    Resultado(imp.totalDias(jornada), imp.restoHoras(jornada))
+  }
+  
+  //TODO: Implementar ordenado
+  def ordenarImputacion(): Boolean = false
   
 }
+
 val listaImp = List(imp1, imp2, imp3, imp4, imp5, imp6, imp7, imp8, imp9, imp10, imp11, imp12, imp13, imp14, imp15)
 
-val imputar1 = new RealizaImputacion("Jose", 154, listaImp)
+val imputar1 = new RealizaImputacion("Jose", 154, listaImp, 7)
 
 for (item <- imputar1.obtenerImputaciones()) println(item)
