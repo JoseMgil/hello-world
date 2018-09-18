@@ -35,11 +35,17 @@ class Backend(scope: BackendScope[Unit, State]) {
     )
     
   def obtainList(s_text: String):  List[String] = {
-    val lis = s_text.split("\t[^\t]*\t")
-    var ret = List("Test Finised")
-    for(e <- lis) ret = ret:+ e
+    val lis = s_text.split("\n")
+    val node1 = lis(0).split("\t[^\t]*\t")
+    var ret = List("Test Finished")
+    for(e <- lis) ret = ret:+ (e.split("\t[^\t]*\t")(0) + " " + e.split("\t[^\t]*\t")(1))
     ret
   }
+  
+  def imputar(imputacion: String, v_jornada: String): List[String] = {
+    List()
+  }
+  
 }
 
 val TodoApp = ScalaComponent.builder[Unit]("TodoApp")
