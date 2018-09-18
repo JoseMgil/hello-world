@@ -1,11 +1,23 @@
-// Start writing your ScalaFiddle code here
+/*
+  Class Imputaciones - To get the exact days and hours to register
+  By Mgil
+*/
 // IMPUTACIONES JULIO
 
-
+ 
+/**
+ * Class Resultado
+ * Identify the total days and hours necesary to input 
+*/ 
 case class Resultado(dias: Int, horas: Int){
   override def toString(): String = dias + " dias y " + horas + " horas"
 }
 
+
+/**
+ * Class Imputacion
+ * Identify the total hours to input in the specified project code 
+*/
 class Imputacion(v_codigo: String, v_horas: Int) {
   var codigo = v_codigo
   var horas = v_horas
@@ -29,7 +41,10 @@ class Imputacion(v_codigo: String, v_horas: Int) {
   
 }
 
-
+/**
+  * Class RealizaImputacion
+  * Checks and obtain all the ResultadoImputacion from a List of Imputaciones 
+*/
 class RealizaImputacion(v_nombre: String, v_totalImputar: Int, v_listaImp: List[Imputacion], v_jornada: Int) {
   
   var nombre = v_nombre
@@ -78,6 +93,7 @@ class RealizaImputacion(v_nombre: String, v_totalImputar: Int, v_listaImp: List[
   
 }
 
+//TEST CASE: 
 val listaImp = List(imp1, imp2, imp3, imp4, imp5, imp6, imp7, imp8, imp9, imp10, imp11, imp12, imp13, imp14, imp15)
 
 val imputar1 = new RealizaImputacion("Jose", 154, listaImp, 7)
