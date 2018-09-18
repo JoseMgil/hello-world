@@ -1,0 +1,50 @@
+import japgolly.scalajs.react._, vdom.html_<^._
+
+val TodoList = ScalaFnComponent[List[String]]{ props =>
+    def createItem(itemText: String) = <.li(itemText)
+    <.ul(props map createItem: _*)
+  }
+
+case class State(items: List[String], text: String, jornada: String)
+
+class Backend(scope: BackendScope[Unit, State]) {
+  
+  def onChange(e: ReactEventFromInput) = {
+    val newValue = e.target.value
+    e.target.id match 
+    {
+      case "Imp" => scope.modState(_.copy(text = newValue))
+      case "Jor" => scope.modState(_.copy(jornada = newValue))
+    }
+  }
+
+  def handleSubmit(e: ReactEventFromInput) = 
+    e.preventDefaultCB >>
+    scope.modState(s => State(obtainList(s.text), "", ""))
+    
+
+  def render(state: State) =
+    <.div(
+      <.h3("RESUMEN IMPUTACIONES"),
+      TodoList(state.items),
+      <.form(^.onSubmit ==> handleSubmit,
+        "Imputacion: ", <.input(^.id := "Imp", ^.onChange ==> onChange, ^.value := state.text), <.br(), 
+        "Jornada: ", <.input(^.id := "Jor", ^.onChange ==> onChange, ^.value := state.jornada), <.br(), 
+        <.br(),<.button("Imputacion")
+      )
+    )
+    
+  def obtainList(s_text: String):  List[String] = {
+    val lis = s_text.split("\t[^\t]*\t")
+    var ret = List("Test Finised")
+    for(e <- lis) ret = ret:+ e
+    ret
+  }
+}
+
+val TodoApp = ScalaComponent.builder[Unit]("TodoApp")
+  .initialState(State(Nil, "", ""))
+  .renderBackend[Backend]
+  .build
+
+TodoApp().renderIntoDOM(Fiddle.panel)
