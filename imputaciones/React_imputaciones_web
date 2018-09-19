@@ -5,7 +5,7 @@ val TodoList = ScalaFnComponent[List[String]]{ props =>
     <.ul(props map createItem: _*)
   }
 
-case class State(items: List[String], text: String, jornada: String)
+case class State(items: List[String], text: String, jornada: String, total_h: String)
 
 class Backend(scope: BackendScope[Unit, State]) {
   
@@ -15,12 +15,13 @@ class Backend(scope: BackendScope[Unit, State]) {
     {
       case "Imp" => scope.modState(_.copy(text = newValue))
       case "Jor" => scope.modState(_.copy(jornada = newValue))
+      case "Tot" => scope.modState(_.copy(total_h = newValue))
     }
   }
 
   def handleSubmit(e: ReactEventFromInput) = 
     e.preventDefaultCB >>
-    scope.modState(s => State(obtainList(s.text), "", ""))
+    scope.modState(s => State(imputar(s.text, s.jornada, s.total_h), "", "", ""))
     
 
   def render(state: State) =
@@ -28,8 +29,9 @@ class Backend(scope: BackendScope[Unit, State]) {
       <.h3("RESUMEN IMPUTACIONES"),
       TodoList(state.items),
       <.form(^.onSubmit ==> handleSubmit,
-        "Imputacion: ", <.input(^.id := "Imp", ^.onChange ==> onChange, ^.value := state.text), <.br(), 
+        "Imputacion: ", <.textarea(^.id := "Imp", ^.onChange ==> onChange, ^.value := state.text), <.br(), 
         "Jornada: ", <.input(^.id := "Jor", ^.onChange ==> onChange, ^.value := state.jornada), <.br(), 
+        "Total Horas a Imputar: ", <.input(^.id := "Tot", ^.onChange ==> onChange, ^.value := state.total_h), <.br(), 
         <.br(),<.button("Imputacion")
       )
     )
@@ -37,20 +39,24 @@ class Backend(scope: BackendScope[Unit, State]) {
   def obtainList(s_text: String):  List[String] = {
     val lis = s_text.split("\n")
     val node1 = lis(0).split("\t[^\t]*\t")
-    var ret = List("Test Finished")
+    var ret = List[String]()
     for(e <- lis) ret = ret:+ (e.split("\t[^\t]*\t")(0) + " " + e.split("\t[^\t]*\t")(1))
     ret
   }
   
-  def imputar(imputacion: String, v_jornada: String): List[String] = {
-    List()
+  def imputar(imputacion: String, v_jornada: String, v_total: String): List[String] = {
+    var lista = obtainList(imputacion)
+    var lista_imp = List[Imputacion]()
+    for(item <- lista) lista_imp = lista_imp:+ new Imputacion(item.split(" ")(0), item.split(" ")(1).toInt)
+    new RealizaImputacion("Jose", v_total.toInt, lista_imp, v_jornada.toInt).obtenerImputaciones()    
   }
   
 }
 
 val TodoApp = ScalaComponent.builder[Unit]("TodoApp")
-  .initialState(State(Nil, "", ""))
+  .initialState(State(Nil, "", "", ""))
   .renderBackend[Backend]
   .build
+
 
 TodoApp().renderIntoDOM(Fiddle.panel)
