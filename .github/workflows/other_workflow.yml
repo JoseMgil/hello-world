@@ -42,5 +42,4 @@ jobs:
   
     steps:
       - name: upload zip to nexus
-      - run: 
-        echo Uploading zip to Nexus... 
+      - run: echo Uploading zip to Nexus
