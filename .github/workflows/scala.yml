@@ -27,6 +27,6 @@ jobs:
       uses: actions/upload-artifact@v2 
       with: 
         name: scala_artifact 
-        path: *
+        path: /*
       
   
