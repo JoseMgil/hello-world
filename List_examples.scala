@@ -95,3 +95,4 @@ println(flatMapList)
 // Test code
 println(fruit(1))
 println(asoci(2))
+println(asoci(3))
