@@ -1,5 +1,4 @@
 name: Scala CI
-
 on:
   push:
     branches: [ master ]
@@ -21,12 +20,13 @@ jobs:
       run: sbt test
   # Job para hacer el artefacto    
   artifact:
+    needs: build
     runs-on: ubuntu-latest 
     steps: 
     - name: upload artifact
       uses: actions/upload-artifact@v2 
       with: 
         name: scala_artifact 
-        path: ./*
+        path: *
       
   
